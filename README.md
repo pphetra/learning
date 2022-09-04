@@ -51,3 +51,13 @@ module.exports = {
 @tailwind components;
 @tailwind utilities;
 ```
+
+# git commands
+
+```
+git fetch origin
+
+git branch -v -a
+
+git switch -c test origin/test
+```
