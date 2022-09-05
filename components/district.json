@@ -1,0 +1,8 @@
+[
+  { "provinceId": "10", "name": "จตุจักร", "id": "1010" },
+  { "provinceId": "10", "name": "ป้อมปราบ", "id": "1020" },
+  { "provinceId": "10", "name": "สวนหลวง", "id": "1030" },
+  { "provinceId": "11", "name": "แม่ริม", "id": "1110" },
+  { "provinceId": "11", "name": "สันทราย", "id": "1120" },
+  { "provinceId": "11", "name": "เชียงดาว", "id": "1130" }
+]
