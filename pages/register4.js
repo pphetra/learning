@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import Select from "react-select";
@@ -13,6 +13,7 @@ const formSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .required("Password is mendatory")
     .oneOf([Yup.ref("password")], "Passwords does not match"),
+  provinceId: Yup.string().required("กรุณาระบุจังหวัด"),
 });
 
 function Register4() {
@@ -20,6 +21,7 @@ function Register4() {
     register,
     handleSubmit,
     reset,
+    control,
     watch,
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
@@ -100,11 +102,26 @@ function Register4() {
             </div>
             <div className="flex flex-col">
               <label>Gender</label>
-              <Select
-                options={provinceData}
-                getOptionLabel={(o) => o.name}
-                getOptionValue={(o) => o.id}
+              <Controller
+                name="provinceId"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    inputRef={field.ref}
+                    classNamePrefix="province-select"
+                    options={provinceData}
+                    value={provinceData.find((p) => p.id === field.value)}
+                    getOptionLabel={(o) => o.name}
+                    getOptionValue={(o) => o.id}
+                    onChange={(val) => field.onChange(val.id)}
+                  />
+                )}
               />
+              {errors.provinceId && (
+                <div className="invalid-feedback">
+                  {errors.provinceId?.message}
+                </div>
+              )}
             </div>
             <div className="flex flex-col">
               <button
